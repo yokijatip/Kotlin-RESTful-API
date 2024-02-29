@@ -1,0 +1,25 @@
+@startuml
+
+actor "User" as user
+node "Kotlin RESTful API" {
+
+    /'Controller untuk akses si user nya'/
+    component "Controller" as controller
+    /'Services untuk business logic'/
+    component "Service" as service
+
+    /'Repository untuk jembatan antara kode dengan database, jadi semua akses ke database lewat si repo'/
+    component "Repository" as repository
+}
+
+database "PostgreSQL" as database
+
+/'User ketika ingin request akan di terima oleh controller'/
+/'Ini arah nya dua arah jadi'/
+user <--> controller
+controller <--> service
+service <--> repository
+
+repository <--> database
+
+@enduml
